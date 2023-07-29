@@ -26,5 +26,18 @@
         {
             this.score.Add(numberOfScore);
         }
+
+        public void AddAnnualScore(int numberOfAnnualScore)
+        {
+            this.score.Add(numberOfAnnualScore);
+        }
+
+        public void AddPenaltyScore(int numberOfPenaltyScore)
+        {
+            this.score.Add(numberOfPenaltyScore);
+        }
+        
+
+
     }
 }
