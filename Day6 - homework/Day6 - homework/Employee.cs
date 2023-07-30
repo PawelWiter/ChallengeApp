@@ -1,4 +1,4 @@
-﻿namespace Day6___homework
+﻿namespace ChallengeApp
 {
     public class Employee
     {
@@ -8,12 +8,12 @@
         {
             this.Name = name;
             this.Surname = surname;
-            this.age = age;
+            this.Age = age;
         }
 
         public string Name { get; private set; }
         public string Surname { get; private set; }
-        public int age { get; private set; }
+        public int Age { get; private set; }
 
         public int Result
         {
@@ -22,6 +22,7 @@
                 return this.score.Sum();
             }
         }
+
         public void AddScore(int numberOfScore)
         {
             this.score.Add(numberOfScore);
@@ -36,8 +37,5 @@
         {
             this.score.Add(numberOfPenaltyScore);
         }
-        
-
-
     }
 }

@@ -16,5 +16,3 @@ for (char c = 'a'; c <= 'z'; c++)
 }
 Console.WriteLine("");
 Console.WriteLine("--------------------------");
-
-

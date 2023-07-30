@@ -1,6 +1,8 @@
-namespace Day6___homework.Test
+using ChallengeApp;
+
+namespace ChallengeApp.Test
 {
-    public class Tests
+    public class EmployeeTests
     {
         [Test]
         public void WhenEmploeeCollectTwoScores_ShouldCorectResult()
@@ -14,7 +16,7 @@ namespace Day6___homework.Test
             var result = employee.Result;
 
             //assert
-            Assert.AreEqual(12, result);
+            Assert.That(result, Is.EqualTo(12));
         }
 
         [Test]
@@ -27,7 +29,7 @@ namespace Day6___homework.Test
 
             var result = employee.Result;
 
-            Assert.AreEqual(42, result);
+            Assert.That(result, Is.EqualTo(42));
         }
 
         [Test]
@@ -41,7 +43,7 @@ namespace Day6___homework.Test
 
             var result = employee.Result;
 
-            Assert.AreEqual(0, result);
+            Assert.That(result, Is.EqualTo(0));
         }
     }
 }
