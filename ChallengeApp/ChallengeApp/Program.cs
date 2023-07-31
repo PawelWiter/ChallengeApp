@@ -1,4 +1,6 @@
-﻿Employee employee1 = new Employee("Piotr", "Kowalski", 33);
+﻿using ChallengeApp;
+
+Employee employee1 = new Employee("Piotr", "Kowalski", 33);
 Employee employee2 = new Employee("Anna", "Lewandowska", 22);
 Employee employee3 = new Employee("Zenon", "Nowak", 55);
 
@@ -25,5 +27,3 @@ var statistics = employee1.GetStatistics();
 Console.WriteLine($"Average: {statistics.Average:N2}");
 Console.WriteLine($"Min:{statistics.Min}");
 Console.WriteLine($"Max:{statistics.Max}");
-
-

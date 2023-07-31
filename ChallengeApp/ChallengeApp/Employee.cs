@@ -14,7 +14,7 @@
         public string Name { get; private set; }
         public string Surname { get; private set; }
         public int Age { get; private set; }
-              
+
         public void AddScore(float numberOfScore)
         {
             this.score.Add(numberOfScore);
@@ -43,7 +43,7 @@
                 statistics.Min = Math.Min(statistics.Min, score);
                 statistics.Average += score;
             }
-            
+
             statistics.Average /= this.score.Count;
 
             return statistics;
