@@ -22,8 +22,18 @@ employee3.AddScore(3);
 employee3.AddScore(2);
 employee3.AddScore(1);
 
-var statistics = employee1.GetStatistics();
+List<Employee> employees = new List<Employee>()
+{
+    employee1, employee2, employee3
+};
 
-Console.WriteLine($"Average: {statistics.Average:N2}");
-Console.WriteLine($"Min:{statistics.Min}");
-Console.WriteLine($"Max:{statistics.Max}");
+foreach (var employee in employees)
+{
+    var statistics = employee.GetStatistics();
+
+    Console.WriteLine($"Pracownik: {employee.Name} {employee.Surname} (Wiek: {employee.Age})");
+    Console.WriteLine($"Average: {statistics.Average:N2}");
+    Console.WriteLine($"Min:{statistics.Min}");
+    Console.WriteLine($"Max:{statistics.Max}");
+    Console.WriteLine();
+}

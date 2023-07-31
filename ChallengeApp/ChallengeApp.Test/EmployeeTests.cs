@@ -3,7 +3,7 @@ namespace ChallengeApp.Test
     public class EmployeeTests
     {
         [Test]
-        public void WhenCheckAverageShouldBeGreaterThen0()
+        public void WhenCheckAverageShouldBeNotEqualToMinAndMax()
         {
             //arrange
             var employee1 = new Employee("Piotr", "Kowalski", 33);
