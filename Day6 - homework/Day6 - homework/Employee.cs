@@ -1,8 +1,9 @@
-﻿namespace ChallengeApp
+﻿namespace ChallengeApp 
 {
+
     public class Employee
     {
-        private List<int> score = new List<int>();
+        private List<float> score = new List<float>();
 
         public Employee(string name, string surname, int age)
         {
@@ -15,27 +16,38 @@
         public string Surname { get; private set; }
         public int Age { get; private set; }
 
-        public int Result
-        {
-            get
-            {
-                return this.score.Sum();
-            }
-        }
-
-        public void AddScore(int numberOfScore)
+        public void AddScore(float numberOfScore)
         {
             this.score.Add(numberOfScore);
         }
 
-        public void AddAnnualScore(int numberOfAnnualScore)
+        public void AddAnnualScore(float numberOfAnnualScore)
         {
             this.score.Add(numberOfAnnualScore);
         }
 
-        public void AddPenaltyScore(int numberOfPenaltyScore)
+        public void AddPenaltyScore(float numberOfPenaltyScore)
         {
             this.score.Add(numberOfPenaltyScore);
+        }
+
+        public Statistics GetStatistics()
+        {
+            var statistics = new Statistics();
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            foreach (var score in this.score)
+            {
+                statistics.Max = Math.Max(statistics.Max, score);
+                statistics.Min = Math.Min(statistics.Min, score);
+                statistics.Average += score;
+            }
+
+            statistics.Average /= this.score.Count;
+
+            return statistics;
         }
     }
 }

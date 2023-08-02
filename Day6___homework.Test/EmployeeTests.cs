@@ -1,49 +1,24 @@
-using ChallengeApp;
-
 namespace ChallengeApp.Test
 {
     public class EmployeeTests
     {
         [Test]
-        public void WhenEmploeeCollectTwoScores_ShouldCorectResult()
+        public void WhenCheckAverageShouldBeGreaterThen0()
         {
             //arrange
-            var employee = new Employee("Piotr", "Kowalski", 33);
-            employee.AddScore(5);
-            employee.AddScore(7);
+            var employee1 = new Employee("Piotr", "Kowalski", 33);
+            employee1.AddScore(5);
+            employee1.AddScore(7);
+
+            var statistics = employee1.GetStatistics();
+            var emp1 = employee1.GetStatistics();
 
             //act
-            var result = employee.Result;
+            var t = emp1.Average;
+
 
             //assert
-            Assert.That(result, Is.EqualTo(12));
-        }
-
-        [Test]
-        public void WhenEmploeeGetAnnulScores_ShouldCorectResult()
-        {
-            var employee = new Employee("Piotr", "Kowalski", 33);
-            employee.AddScore(5);
-            employee.AddScore(7);
-            employee.AddAnnualScore(30);
-
-            var result = employee.Result;
-
-            Assert.That(result, Is.EqualTo(42));
-        }
-
-        [Test]
-        public void WhenEmploeeGetPenaltyScores_ShouldCorectResult()
-        {
-            var employee = new Employee("Piotr", "Kowalski", 33);
-            employee.AddScore(5);
-            employee.AddScore(7);
-            employee.AddAnnualScore(30);
-            employee.AddPenaltyScore(-42);
-
-            var result = employee.Result;
-
-            Assert.That(result, Is.EqualTo(0));
-        }
+            Assert.That(0, Is.Not.GreaterThan(t));
+         }
     }
 }

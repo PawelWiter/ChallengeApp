@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,5 +7,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="C:\Users\pwiter\Documents\PROJEKTY CS\ChallengeApp\ChallengeApp\ChallengeApp\Employee.cs" Link="Employee.cs" />
+    <Compile Include="C:\Users\pwiter\Documents\PROJEKTY CS\ChallengeApp\ChallengeApp\ChallengeApp\Program.cs" Link="Program.cs" />
+    <Compile Include="C:\Users\pwiter\Documents\PROJEKTY CS\ChallengeApp\ChallengeApp\ChallengeApp\Statistics.cs" Link="Statistics.cs" />
+  </ItemGroup>
 
 </Project>

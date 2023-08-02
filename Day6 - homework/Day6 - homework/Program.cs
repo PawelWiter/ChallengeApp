@@ -1,4 +1,5 @@
 ﻿using ChallengeApp;
+using Day6___homework;
 
 Employee employee1 = new Employee("Piotr", "Kowalski", 33);
 Employee employee2 = new Employee("Anna", "Lewandowska", 22);
@@ -22,19 +23,10 @@ employee3.AddScore(3);
 employee3.AddScore(2);
 employee3.AddScore(1);
 
-List<Employee> employees = new List<Employee>()
-{
-employee1, employee2, employee3
-};
+var statistics = employee1.GetStatistics();
 
-int maxResult = -1;
-Employee employeeWithMaxResult = null;
+Console.WriteLine($"Average: {statistics.Average:N2}");
+Console.WriteLine($"Min:{statistics.Min}");
+Console.WriteLine($"Max:{statistics.Max}");
 
-foreach (var employee in employees)
-    if (employee.Result > maxResult)
-    {
-        employeeWithMaxResult = employee;
-        maxResult = employeeWithMaxResult.Result;
-    }
 
-Console.WriteLine("Pracownik " + employeeWithMaxResult.Name + " " + "" + employeeWithMaxResult.Surname + " (lat: " + employeeWithMaxResult.Age + ") uzyskał wynik " + employeeWithMaxResult.Result);
