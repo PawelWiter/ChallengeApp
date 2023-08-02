@@ -17,17 +17,50 @@
 
         public void AddScore(float numberOfScore)
         {
-            this.score.Add(numberOfScore);
+            if (numberOfScore >= 0 && numberOfScore <= 100)
+            {
+                this.score.Add(numberOfScore);
+            }
+            else
+            {
+                Console.WriteLine("invalid score value");
+            }
         }
 
-        public void AddAnnualScore(float numberOfAnnualScore)
+        public void AddScore(double numberOfScore)
         {
-            this.score.Add(numberOfAnnualScore);
+            float numberOfScorseAsFloat = (float)numberOfScore;
+            this.AddScore(numberOfScorseAsFloat);
         }
 
-        public void AddPenaltyScore(float numberOfPenaltyScore)
+        public void AddScore(int numberOfScore)
         {
-            this.score.Add(numberOfPenaltyScore);
+            float numberOfScoreAsFloat = numberOfScore;
+            this.AddScore(numberOfScoreAsFloat);
+        }
+
+        public void AddScore(decimal numberOfScore)
+        {
+            float numberOfScoreAsDecimal = Convert.ToSingle(numberOfScore);
+            this.AddScore(numberOfScoreAsDecimal);
+        }
+
+        public void AddScore(long numberOfScore)
+        {
+            float numberOfScorseAsFloat = numberOfScore;
+            this.AddScore(numberOfScorseAsFloat);
+        }
+
+        public void AddScore(string numberOfScore)
+        {
+            if (float.TryParse(numberOfScore, out float result))
+            {
+                this.AddScore(result);
+            }
+            else
+            {
+                Console.WriteLine("String in not float");
+            }
         }
 
         public Statistics GetStatistics()

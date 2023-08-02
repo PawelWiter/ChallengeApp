@@ -4,11 +4,12 @@ Employee employee1 = new Employee("Piotr", "Kowalski", 33);
 Employee employee2 = new Employee("Anna", "Lewandowska", 22);
 Employee employee3 = new Employee("Zenon", "Nowak", 55);
 
-employee1.AddScore(5);
-employee1.AddScore(6);
-employee1.AddScore(7);
-employee1.AddScore(8);
-employee1.AddScore(9);
+
+employee1.AddScore(2.5);
+employee1.AddScore("40");
+employee1.AddScore(12);
+employee1.AddScore(30);
+employee1.AddScore(40);
 
 employee2.AddScore(1);
 employee2.AddScore(3);
