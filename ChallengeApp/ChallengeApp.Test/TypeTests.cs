@@ -2,32 +2,15 @@
 {
     public class TypeTests
     {
-        //test dla INT
-        [Test]
-        public void WhenComparingDifferentNumbers_ShouldOneOfThemBeGreater()
-        {
-            //arrange
-            var employee1 = GetEmployee("Piotr", "Kowalski", 33);
-            var employee2 = GetEmployee("Anna", "Lewandowska", 22);
-            var employee3 = GetEmployee("Zenon", "Nowak", 55);
-            var employee4 = GetEmployee("Piotr", "Nowak", 66);
-
-            //act
-
-            //assert
-            Assert.That(employee1.Age, Is.GreaterThan(employee2.Age));
-            Assert.That(employee3.Age, Is.Not.GreaterThan(employee4.Age));
-        }
-
         //Test dla typów referencyjnych
         [Test]
         public void WhenGetUserShoulReturnDifferentObject()
         {
             //arrange
-            var employee1 = GetEmployee("Piotr", "Kowalski", 33);
-            var employee2 = GetEmployee("Anna", "Lewandowska", 22);
-            var employee3 = GetEmployee("Zenon", "Nowak", 55);
-            var employee4 = GetEmployee("Piotr", "Nowak", 66);
+            var employee1 = GetEmployee("Piotr", "Kowalski");
+            var employee2 = GetEmployee("Anna", "Lewandowska");
+            var employee3 = GetEmployee("Zenon", "Nowak");
+            var employee4 = GetEmployee("Piotr", "Nowak");
 
             //act
 
@@ -41,10 +24,10 @@
         public void WhenTakeDetailOfUserInStringCouldBeTheSame()
         {
             //arrange
-            var employee1 = GetEmployee("Piotr", "Kowalski", 33);
-            var employee2 = GetEmployee("Anna", "Lewandowska", 22);
-            var employee3 = GetEmployee("Zenon", "Nowak", 55);
-            var employee4 = GetEmployee("Piotr", "Nowak", 66);
+            var employee1 = GetEmployee("Piotr", "Kowalski");
+            var employee2 = GetEmployee("Anna", "Lewandowska");
+            var employee3 = GetEmployee("Zenon", "Nowak");
+            var employee4 = GetEmployee("Piotr", "Nowak");
 
             //act
 
@@ -59,7 +42,7 @@
         public void WhenCheckAverageShouldBeGreaterThen0()
         {
             //arrange
-            var employee1 = new Employee("Piotr", "Kowalski", 33);
+            var employee1 = new Employee("Piotr", "Kowalski");
             employee1.AddScore(5);
             employee1.AddScore(7);
 
@@ -76,9 +59,9 @@
 
         }
 
-        private Employee GetEmployee(string name, string surname, int age)
+        private Employee GetEmployee(string name, string surname)
         {
-            return new Employee(name, surname, age);
+            return new Employee(name, surname);
         }
     }
 }

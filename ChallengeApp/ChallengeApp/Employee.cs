@@ -4,16 +4,14 @@
     {
         private List<float> score = new List<float>();
 
-        public Employee(string name, string surname, int age)
+        public Employee(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;
-            this.Age = age;
         }
 
         public string Name { get; private set; }
         public string Surname { get; private set; }
-        public int Age { get; private set; }
 
         public void AddScore(float numberOfScore)
         {
@@ -39,6 +37,57 @@
             this.AddScore(numberOfScoreAsFloat);
         }
 
+        public void AddScore(char numberOfScore)
+        {
+            //    if (numberOfScore == 'A')
+            //    {
+            //        this.score.Add(100);
+            //    }
+            //    else if (numberOfScore == 'B')
+            //    {
+            //        this.score.Add(80);
+            //    }
+            //    else if (numberOfScore == 'C')
+            //    {
+            //        this.score.Add(60);
+            //    }
+            //    else if (numberOfScore == 'D')
+            //    {
+            //        this.score.Add(40);
+            //    }
+            //    else if (numberOfScore == 'E')
+            //    {
+            //        this.score.Add(20);
+            //    }
+
+            switch (numberOfScore)
+            {
+                case 'A':
+                case 'a':
+                    this.score.Add(100);
+                    break;
+                case 'B':
+                case 'b':
+                    this.score.Add(80);
+                    break;
+                case 'C':
+                case 'c':
+                    this.score.Add(60);
+                    break;
+                case 'D':
+                case 'd':
+                    this.score.Add(40);
+                    break;
+                case 'E':
+                case 'e':
+                    this.score.Add(20);
+                    break;
+                default:
+                    Console.WriteLine("Wrong Letter");
+                    //this.score.Add(0);
+                    break;
+            }
+        }
         public void AddScore(decimal numberOfScore)
         {
             float numberOfScoreAsDecimal = Convert.ToSingle(numberOfScore);
@@ -79,6 +128,25 @@
                 }
             }
             statistics.Average /= this.score.Count;
+
+            switch (statistics.Average)
+            {
+                case var average when average >= 80:
+                    statistics.AverageLetter = 'A';
+                    break;
+                case var average when average >= 60:
+                    statistics.AverageLetter = 'B';
+                    break;
+                case var average when average >= 40:
+                    statistics.AverageLetter = 'C';
+                    break;
+                case var average when average >= 20:
+                    statistics.AverageLetter = 'D';
+                    break;
+                default:
+                    statistics.Average = 'E';
+                    break;
+            }
 
             return statistics;
         }

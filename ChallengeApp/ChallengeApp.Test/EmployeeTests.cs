@@ -6,7 +6,7 @@ namespace ChallengeApp.Test
         public void WhenCheckAverageShouldBeNotEqualToMinAndMax()
         {
             //arrange
-            var employee1 = new Employee("Piotr", "Kowalski", 33);
+            var employee1 = new Employee("Piotr", "Kowalski");
             employee1.AddScore(1);
             employee1.AddScore(4);
             employee1.AddScore(5);
