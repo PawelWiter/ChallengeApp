@@ -1,9 +1,6 @@
 ﻿using ChallengeApp;
 
 Employee employee1 = new Employee("Piotr", "Kowalski", 33);
-Employee employee2 = new Employee("Anna", "Lewandowska", 22);
-Employee employee3 = new Employee("Zenon", "Nowak", 55);
-
 
 employee1.AddScore(2.5);
 employee1.AddScore("40");
@@ -11,27 +8,13 @@ employee1.AddScore(12.5445456);
 employee1.AddScore(30);
 employee1.AddScore(40);
 
-employee2.AddScore(1);
-employee2.AddScore(3.55);
-employee2.AddScore(4);
-employee2.AddScore(5D);
-employee2.AddScore(6);
-
-employee3.AddScore(5);
-employee3.AddScore("66");
-employee3.AddScore(33.33333);
-employee3.AddScore(0.23333333333333);
-employee3.AddScore(1);
-
 List<Employee> employees = new List<Employee>()
 {
-    employee1, //employee2, employee3
+    employee1
 };
-
 
 foreach (var employee in employees)
 {
-    var statistics = employee.GetStatistics();
     var statistics1 = employee.GetStatisticsWithForEach();
     var statistics2 = employee.GetStatisticsWithFor();
     var statistics3 = employee.GetStatisticsWithDoWhile();
