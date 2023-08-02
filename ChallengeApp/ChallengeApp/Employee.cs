@@ -70,13 +70,63 @@
             statistics.Max = float.MinValue;
             statistics.Min = float.MaxValue;
 
+            //var index = 0;
+
+            //while (index < this.score.Count) ;
+            //{
+            //    if (this.score[index] == 1) 
+            //    {
+            //        break;
+            //    }
+
+            //    statistics.Max = Math.Max(statistics.Max, this.score[index]);
+            //    statistics.Min = Math.Min(statistics.Min, this.score[index]);
+            //    statistics.Average += this.score[index];
+            //    index++;
+            //} 
+
+            //do
+            //{
+            //    statistics.Max = Math.Max(statistics.Max, this.score[index]);
+            //    statistics.Min = Math.Min(statistics.Min, this.score[index]);
+            //    statistics.Average += this.score[index];
+            //    index++;
+            //} while (index<this.score.Count );
+
+            //foreach (var score in this.score)
+            //{
+            //    if(score < 0)
+            //    {
+            //        continue;
+            //    }
+
+            //    statistics.Max = Math.Max(statistics.Max, score);
+            //    statistics.Min = Math.Min(statistics.Min, score);
+            //    statistics.Average += score;
+            //}
+
             foreach (var score in this.score)
             {
-                statistics.Max = Math.Max(statistics.Max, score);
-                statistics.Min = Math.Min(statistics.Min, score);
-                statistics.Average += score;
+
+                //break
+                //continue
+                //goto
+
+                //if (score == 1)
+                //{
+                //    goto here;
+                //}
+
+                //if (score >= 0)
+                {
+                    statistics.Max = Math.Max(statistics.Max, score);
+                    statistics.Min = Math.Min(statistics.Min, score);
+                    statistics.Average += score;
+                }
             }
 
+
+        //here:
             statistics.Average /= this.score.Count;
 
             return statistics;
