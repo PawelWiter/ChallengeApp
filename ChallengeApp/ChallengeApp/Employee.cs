@@ -4,6 +4,10 @@
     {
         private List<float> score = new List<float>();
 
+        public Employee()
+        {
+        }
+
         public Employee(string name, string surname)
         {
             this.Name = name;
