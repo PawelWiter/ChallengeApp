@@ -1,3 +1,5 @@
+using System.Threading.Tasks.Sources;
+
 namespace ChallengeApp.Test
 {
     public class EmployeeTests
@@ -6,22 +8,45 @@ namespace ChallengeApp.Test
         public void WhenCheckAverageShouldBeNotEqualToMinAndMax()
         {
             //arrange
-            var employee1 = new Employee("Piotr", "Kowalski");
-            employee1.AddScore(1);
-            employee1.AddScore(4);
-            employee1.AddScore(5);
- 
-           //act
+            var employee = new Employee("Piotr", "Kowalski");
 
-            var statistics1 = employee1.GetStatistics();
-            var Average1 = statistics1.Average;
-            var Min1 = statistics1.Min;
-            var Max1 = statistics1.Max;
+            employee.AddScore(100);
+            employee.AddScore(20);
+            employee.AddScore(30);
+           
+            //act
+
+            var statistics = employee.GetStatistics();
+            var average = statistics.Average;
+            var min = statistics.Min;
+            var max = statistics.Max;
+            var averageAsLetter = statistics.AverageLetter;
 
             //assert
-            Assert.That(Min1, Is.Not.GreaterThanOrEqualTo(Average1));
-            Assert.That(Max1, Is.GreaterThanOrEqualTo(Average1));
-            Assert.That(Math.Round(3.33, 2), Is.EqualTo(Math.Round(Average1,2)));
+            Assert.That(min, Is.Not.GreaterThanOrEqualTo(average));
+            Assert.That(max, Is.GreaterThanOrEqualTo(average));
+            Assert.That(Equals(average, 50f));
+            Assert.That(Equals(averageAsLetter, 'C'));
+        }
+        [Test]
+        public void WhenInputLetterShouldChangeToNumber()
+        {
+            //arrange
+            var employee = new Employee("Piotr", "Kowalski");
+
+            employee.AddScore('A');
+            employee.AddScore('c');
+
+            //act
+
+            var statistics = employee.GetStatistics();
+            var averageLetter = statistics.AverageLetter;
+            var averageNumber = statistics.Average;
+
+            //Assert
+
+            Assert.That(Equals(averageNumber, 80f));
+            Assert.That(Equals(averageLetter, 'A'));
         }
     }
 }

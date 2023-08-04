@@ -1,54 +1,33 @@
 ﻿using ChallengeApp;
 
-Employee employee1 = new Employee("Piotr", "Kowalski", 33);
+Console.WriteLine(" Witamy w programie PeopleStat+ ");
+Console.WriteLine(" ===============================");
+Console.WriteLine();
+Console.WriteLine(" Wprowadź ocenę z zakresu 0 - 100");
+Console.WriteLine(" lub ");
+Console.WriteLine(" A = 100;  B = 80;  C = 60;   D = 40;  E = 20");
+Console.WriteLine();
+Console.WriteLine(" W celu podsumowania => Wciśnij Q");
+Console.WriteLine();
 
-employee1.AddScore(2.5);
-employee1.AddScore("40");
-employee1.AddScore(12.5445456);
-employee1.AddScore(30);
-employee1.AddScore(40);
+var employee = new Employee("Piotr", "Nowak");
 
-List<Employee> employees = new List<Employee>()
+while (true)
 {
-    employee1
-};
-
-foreach (var employee in employees)
-{
-    var statistics1 = employee.GetStatisticsWithForEach();
-    var statistics2 = employee.GetStatisticsWithFor();
-    var statistics3 = employee.GetStatisticsWithDoWhile();
-    var statistics4 = employee.GetStatisticsWithWhile();
-
-    Console.WriteLine($"GetStatisticsWithForEach");
-    Console.WriteLine($"Pracownik: {employee.Name} {employee.Surname} (Wiek: {employee.Age})");
-    Console.WriteLine($"Average: {statistics1.Average:N2}");
-    Console.WriteLine($"Min:{statistics1.Min}");
-    Console.WriteLine($"Max:{statistics1.Max}");
-    Console.WriteLine("--------------------------------------");
-    Console.WriteLine();
-
-    Console.WriteLine($"GetStatisticsWithForEach");
-    Console.WriteLine($"Pracownik: {employee.Name} {employee.Surname} (Wiek: {employee.Age})");
-    Console.WriteLine($"Average: {statistics2.Average:N2}");
-    Console.WriteLine($"Min:{statistics2.Min}");
-    Console.WriteLine($"Max:{statistics2.Max}");
-    Console.WriteLine("--------------------------------------");
-    Console.WriteLine();
-
-    Console.WriteLine($"GetStatisticsWithForEach");
-    Console.WriteLine($"Pracownik: {employee.Name} {employee.Surname} (Wiek: {employee.Age})");
-    Console.WriteLine($"Average: {statistics3.Average:N2}");
-    Console.WriteLine($"Min:{statistics3.Min}");
-    Console.WriteLine($"Max:{statistics3.Max}");
-    Console.WriteLine("--------------------------------------");
-    Console.WriteLine();
-
-    Console.WriteLine($"GetStatisticsWithForEach");
-    Console.WriteLine($"Pracownik: {employee.Name} {employee.Surname} (Wiek: {employee.Age})");
-    Console.WriteLine($"Average: {statistics4.Average:N2}");
-    Console.WriteLine($"Min:{statistics4.Min}");
-    Console.WriteLine($"Max:{statistics4.Max}");
-    Console.WriteLine("--------------------------------------");
-    Console.WriteLine();
+    Console.WriteLine(" Dodaj ocenę pracownika: ");
+    var input = Console.ReadLine();
+    if (input == "q" || input == "Q")
+    {
+        break;
+    }
+    else if (input != null)
+    {
+        employee.AddScore(input);
+    }
 }
+
+var statistics = employee.GetStatistics();
+Console.WriteLine($"Wynik: {statistics.AverageLetter}" );
+Console.WriteLine($"AVG: {statistics.Average}");
+Console.WriteLine($"Min: {statistics.Min}");
+Console.WriteLine($"Max: {statistics.Max}");

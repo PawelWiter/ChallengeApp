@@ -39,24 +39,22 @@
 
         //test dla float
         [Test]
-        public void WhenCheckAverageShouldBeGreaterThen0()
+        public void WhenTypeNumbersShoudGetLetterAverage()
         {
             //arrange
-            var employee1 = new Employee("Piotr", "Kowalski");
-            employee1.AddScore(5);
-            employee1.AddScore(7);
+            var employee = new Employee("Piotr", "Kowalski");
+            employee.AddScore('B');
+            employee.AddScore('b');
 
-            var statistics1 = employee1.GetStatistics();
-
+            var statistics = employee.GetStatistics();
+  
             //act
-            float Average1 = statistics1.Average;
-            float Min1 = statistics1.Min;
-            float Max1 = statistics1.Max;
+            float average = statistics.Average;
+            float min = statistics.Min;
+            float max = statistics.Max;
 
             //assert
-            Assert.That(Min1, Is.Not.GreaterThanOrEqualTo(Average1));
-            Assert.That(Max1, Is.GreaterThanOrEqualTo(Average1));
-
+            Assert.That(Equals(average, 80f));
         }
 
         private Employee GetEmployee(string name, string surname)
