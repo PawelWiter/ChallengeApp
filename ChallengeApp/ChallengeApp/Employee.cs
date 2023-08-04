@@ -2,12 +2,13 @@
 {
     public class Employee
     {
-        private  List<float> score = new List<float>();
+        private List<float> score = new List<float>();
 
         public Employee(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;
+
         }
 
         public string Name { get; private set; }
@@ -21,7 +22,7 @@
             }
             else
             {
-                Console.WriteLine("#error: invalid score value");
+                throw new Exception("#error: value out of range");
             }
         }
 
@@ -62,8 +63,7 @@
                     this.score.Add(20);
                     break;
                 default:
-                    Console.WriteLine("#error: wrong letter");
-                    break;
+                    throw new Exception("#error: wrong letter");
             }
         }
         public void AddScore(decimal numberOfScore)
@@ -91,7 +91,7 @@
             }
             else
             {
-                Console.WriteLine("#error: string is not a float");
+                throw new Exception("#error: string is not a float");
             }
         }
 
