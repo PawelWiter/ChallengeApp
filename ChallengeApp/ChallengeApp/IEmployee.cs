@@ -1,9 +1,7 @@
 ﻿namespace ChallengeApp
 {
-    //Co..??
     public interface IEmployee
     {
-        //CO?
         string Name { get; }
         string Surname { get; }
 

@@ -1,20 +1,22 @@
 ﻿using ChallengeApp;
 
-Console.WriteLine(" Witamy w programie PeopleStat+ ");
+Console.WriteLine(" Welcome in PeopleStat+ ");
 Console.WriteLine(" ===============================");
 Console.WriteLine();
-Console.WriteLine(" Wprowadź ocenę z zakresu 0 - 100");
-Console.WriteLine(" lub odpowiednią literę");
-Console.WriteLine(" A = 100;  B = 80;  C = 60;   D = 40;  E = 20");
-Console.WriteLine();
-Console.WriteLine(" W celu podsumowania => Wciśnij Q");
+Console.WriteLine(" You can choose your favorite range of grade");
+Console.WriteLine(" Type grade from range 0 - 100");
+Console.WriteLine(" or proper letter A = 100;  B = 80;  C = 60;   D = 40;  E = 20");
+Console.WriteLine(" If you chooce and enter school grade,");
+Console.WriteLine(" then 6 = 100, 5 = 80, ..., 1 = 0, '+' = +5, '-' = -5, ex. 5- = 85");
+Console.WriteLine(" ");
+Console.WriteLine(" For summary => press Q");
 Console.WriteLine("--------------------------------");
 
-var employee = new Employee("Piotr", "Nowak");
+var supervisor = new Supervisor("Piotr", "Nowak");
 
 while (true)
 {
-    Console.WriteLine(" Dodaj ocenę pracownika: ");
+    Console.WriteLine(" Add grade for supervisor: ");
     var input = Console.ReadLine();
     if (input == "q" || input == "Q")
     {
@@ -23,22 +25,22 @@ while (true)
 
     try
     {
-        if (input != null) { employee.AddScore(input); }
+        if (input != null) { supervisor.AddScore(input); }
     }
     catch (Exception ex)
     {
         Console.WriteLine($"Exception catched: {ex.Message}");
     }
 }
-var statistics = employee.GetStatistics();
+var statistics = supervisor.GetStatistics();
 if (statistics.EmptyScoreList == false)
 {
     Console.WriteLine("");
     Console.WriteLine("----------------------------------");
-    Console.WriteLine($"Wynik: {statistics.AverageLetter}");
+    Console.WriteLine($"Final Grade: {statistics.AverageLetter}");
     Console.WriteLine($"AVG: {statistics.Average:N1}");
     Console.WriteLine($"Min: {statistics.Min}");
     Console.WriteLine($"Max: {statistics.Max}");
     Console.WriteLine("----------------------------------");
 }
-else Console.WriteLine("Brak podsumomowania: Nie wprowadzono nawet jednej oceny");
+else Console.WriteLine("We are sorry, there is no statistics: No data entered");

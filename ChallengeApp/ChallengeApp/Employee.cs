@@ -1,8 +1,5 @@
 ﻿namespace ChallengeApp
 {   
-    /// <summary>
-    /// jak to zrobić??
-    /// </summary>
     public class Employee : IEmployee
     {
         private readonly List<float> score = new();
@@ -71,17 +68,6 @@
                     throw new Exception("#error: wrong letter");
             }
         }
-        public void AddScore(decimal numberOfScore)
-        {
-            float numberOfScoreAsDecimal = Convert.ToSingle(numberOfScore);
-            this.AddScore(numberOfScoreAsDecimal);
-        }
-
-        public void AddScore(long numberOfScore)
-        {
-            float numberOfScorseAsFloat = numberOfScore;
-            this.AddScore(numberOfScorseAsFloat);
-        }
 
         public void AddScore(string numberOfScore)
         {
@@ -89,9 +75,8 @@
             {
                 this.AddScore(result);
             }
-            else if (numberOfScore.Length == 1)
+            else if (char.TryParse(numberOfScore, out char result1))
             {
-                _ = char.TryParse(numberOfScore, result: out char result1);
                 this.AddScore(result1);
             }
             else
@@ -99,7 +84,7 @@
                 throw new Exception("#error: string is not a float");
             }
         }
-        //Jak??
+
         public Statistics GetStatistics()
         {
             var statistics = new Statistics
