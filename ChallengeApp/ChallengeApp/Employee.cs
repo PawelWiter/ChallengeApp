@@ -1,14 +1,23 @@
 ﻿namespace ChallengeApp
-{
-    public class Employee : Person
+{   
+    /// <summary>
+    /// jak to zrobić??
+    /// </summary>
+    public class Employee : IEmployee
     {
-        private List<float> score = new List<float>();
-        
+        private readonly List<float> score = new();
 
         public Employee(string name, string surname)
-            : base(name, surname)
         {
+            this.Name = name;
+            this.Surname = surname;
+            
         }
+                
+        public string Name { get; private set; }
+
+        public string Surname { get; private set; }
+
 
         public void AddScore(float numberOfScore)
         {
@@ -82,7 +91,7 @@
             }
             else if (numberOfScore.Length == 1)
             {
-                char.TryParse(numberOfScore, result: out char result1);
+                _ = char.TryParse(numberOfScore, result: out char result1);
                 this.AddScore(result1);
             }
             else
@@ -90,14 +99,16 @@
                 throw new Exception("#error: string is not a float");
             }
         }
-
+        //Jak??
         public Statistics GetStatistics()
         {
-            var statistics = new Statistics();
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            statistics.EmptyScoreList = true;
+            var statistics = new Statistics
+            {
+                Average = 0,
+                Max = float.MinValue,
+                Min = float.MaxValue,
+                EmptyScoreList = true
+            };
 
             foreach (var score in this.score)
             {
@@ -110,25 +121,14 @@
             }
             statistics.Average /= this.score.Count;
 
-            switch (statistics.Average)
+            statistics.AverageLetter = statistics.Average switch
             {
-                case var average when average >= 80:
-                    statistics.AverageLetter = 'A';
-                    break;
-                case var average when average >= 60:
-                    statistics.AverageLetter = 'B';
-                    break;
-                case var average when average >= 40:
-                    statistics.AverageLetter = 'C';
-                    break;
-                case var average when average >= 20:
-                    statistics.AverageLetter = 'D';
-                    break;
-                default:
-                    statistics.AverageLetter = 'E';
-                    break;
-            }
-
+                var average when average >= 80 => 'A',
+                var average when average >= 60 => 'B',
+                var average when average >= 40 => 'C',
+                var average when average >= 20 => 'D',
+                _ => 'E',
+            };
             return statistics;
         }
     }
