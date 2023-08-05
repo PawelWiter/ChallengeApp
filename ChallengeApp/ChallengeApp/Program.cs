@@ -1,6 +1,4 @@
 ﻿using ChallengeApp;
-using System;
-using System.Runtime.ExceptionServices;
 
 Console.WriteLine(" Witamy w programie PeopleStat+ ");
 Console.WriteLine(" ===============================");
@@ -25,23 +23,22 @@ while (true)
 
     try
     {
-            if (input != null)
-        {
-            employee.AddScore(input);
-        }
+        if (input != null) { employee.AddScore(input); }
     }
-    catch(Exception ex)
+    catch (Exception ex)
     {
         Console.WriteLine($"Exception catched: {ex.Message}");
     }
-
 }
-
 var statistics = employee.GetStatistics();
-Console.WriteLine("");
-Console.WriteLine("----------------------------------");
-Console.WriteLine($"Wynik: {statistics.AverageLetter}");
-Console.WriteLine($"AVG: {statistics.Average:N1}");
-Console.WriteLine($"Min: {statistics.Min}");
-Console.WriteLine($"Max: {statistics.Max}");
-Console.WriteLine("----------------------------------");
+if (statistics.EmptyScoreList == false)
+{
+    Console.WriteLine("");
+    Console.WriteLine("----------------------------------");
+    Console.WriteLine($"Wynik: {statistics.AverageLetter}");
+    Console.WriteLine($"AVG: {statistics.Average:N1}");
+    Console.WriteLine($"Min: {statistics.Min}");
+    Console.WriteLine($"Max: {statistics.Max}");
+    Console.WriteLine("----------------------------------");
+}
+else Console.WriteLine("Brak podsumomowania: Nie wprowadzono nawet jednej oceny");

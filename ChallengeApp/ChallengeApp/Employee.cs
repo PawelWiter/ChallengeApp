@@ -1,18 +1,14 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee
+    public class Employee : Person
     {
         private List<float> score = new List<float>();
+        
 
         public Employee(string name, string surname)
+            : base(name, surname)
         {
-            this.Name = name;
-            this.Surname = surname;
-
         }
-
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
 
         public void AddScore(float numberOfScore)
         {
@@ -101,6 +97,7 @@
             statistics.Average = 0;
             statistics.Max = float.MinValue;
             statistics.Min = float.MaxValue;
+            statistics.EmptyScoreList = true;
 
             foreach (var score in this.score)
             {
@@ -108,6 +105,7 @@
                     statistics.Max = Math.Max(statistics.Max, score);
                     statistics.Min = Math.Min(statistics.Min, score);
                     statistics.Average += score;
+                    statistics.EmptyScoreList = false;
                 }
             }
             statistics.Average /= this.score.Count;
