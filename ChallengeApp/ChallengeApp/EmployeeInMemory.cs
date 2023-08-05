@@ -8,6 +8,12 @@
         {
         }
 
+        public override void SayHello()
+        {
+            Console.WriteLine("Hi!!!");
+            base.SayHello();
+        }
+
         public override void AddScore(float numberOfScore)
         {
             if (numberOfScore >= 0 && numberOfScore <= 100)

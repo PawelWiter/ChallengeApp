@@ -11,6 +11,11 @@
         public string Name { get; private set; }
         public string Surname { get; private set; }
 
+        public virtual void SayHello()
+        {
+            Console.WriteLine($"Hello! I am {Name} {Surname}");
+        }
+
         public abstract void AddScore(float numberOfScore);
 
         public abstract void AddScore(double numberOfScore);

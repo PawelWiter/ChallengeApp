@@ -12,8 +12,8 @@ Console.WriteLine(" ");
 Console.WriteLine(" For summary => press Q");
 Console.WriteLine("--------------------------------");
 
-var supervisor = new Supervisor("Piotr", "Nowak");
-
+var employee = new EmployeeInMemory("Piotr", "Nowak");
+employee.SayHello();
 while (true)
 {
     Console.WriteLine(" Add grade for supervisor: ");
@@ -25,14 +25,14 @@ while (true)
 
     try
     {
-        if (input != null) { supervisor.AddScore(input); }
+        if (input != null) { employee.AddScore(input); }
     }
     catch (Exception ex)
     {
         Console.WriteLine($"Exception catched: {ex.Message}");
     }
 }
-var statistics = supervisor.GetStatistics();
+var statistics = employee.GetStatistics();
 if (statistics.EmptyScoreList == false)
 {
     Console.WriteLine("");
