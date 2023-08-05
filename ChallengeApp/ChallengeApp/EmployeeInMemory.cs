@@ -2,10 +2,10 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
+        private readonly List<float> score = new();
         public EmployeeInMemory(string name, string surname) 
             : base(name, surname)
         {
-
         }
 
         public override void AddScore(float numberOfScore)
