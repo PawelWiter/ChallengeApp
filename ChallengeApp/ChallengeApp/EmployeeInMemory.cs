@@ -2,10 +2,22 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
+        public delegate string WriteMessage(string message); //delegat przygotowany
+
         private readonly List<float> score = new();
         public EmployeeInMemory(string name, string surname)
         : base(name, surname)
         {
+            WriteMessage del;
+            del = ReturnMessage;
+            del("Mój tekst");
+            ReturnMessage("Mój tekst");
+        }
+
+
+        private string  ReturnMessage(string message)
+        {
+            return message;
         }
 
         public override void AddScore(float numberOfScore)
