@@ -3,15 +3,9 @@
     public class EmployeeInMemory : EmployeeBase
     {
         private readonly List<float> score = new();
-        public EmployeeInMemory(string name, string surname) 
-            : base(name, surname)
+        public EmployeeInMemory(string name, string surname)
+        : base(name, surname)
         {
-        }
-
-        public override void SayHello()
-        {
-            Console.WriteLine("Hi!!!");
-            base.SayHello();
         }
 
         public override void AddScore(float numberOfScore)
@@ -114,6 +108,5 @@
             };
             return statistics;
         }
-
     }
 }
