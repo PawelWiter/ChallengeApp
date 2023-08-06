@@ -139,18 +139,22 @@
             {
                 using (var reader = File.OpenText(filename))
                 {
-                    var line = reader.ReadLine();
+                    var line = " ";
 
                     while (line != null)
                     {
-                        var number = float.Parse(line);
-                        statistics.Max = Math.Max(statistics.Max, number);
-                        statistics.Min = Math.Min(statistics.Min, number);
-                        statistics.Average += number;
-                        lineCounter++;
+                        line = reader.ReadLine();
+                        if (line != null)
+                        {
+                            var number = float.Parse(line);
+                            statistics.Max = Math.Max(statistics.Max, number);
+                            statistics.Min = Math.Min(statistics.Min, number);
+                            statistics.Average += number;
+                            lineCounter++;
+                        }
                     }
                 }
-
+            }
                 statistics.Average /= lineCounter;
                 statistics.AverageLetter = statistics.Average switch
                 {
@@ -160,7 +164,6 @@
                     var average when average >= 20 => 'D',
                     _ => 'E',
                 };
-            }
             return statistics;
         }
     }
