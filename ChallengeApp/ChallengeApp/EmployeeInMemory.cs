@@ -2,22 +2,29 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
-        public delegate string WriteMessage(string message); //delegat przygotowany
+        public delegate void WriteMessage(string message); //delegat przygotowany
 
         private readonly List<float> score = new();
         public EmployeeInMemory(string name, string surname)
         : base(name, surname)
         {
             WriteMessage del;
-            del = ReturnMessage;
+            del = WriteMessageInConsole;
+            del += WriteMessageInConsole2;
             del("Mój tekst");
-            ReturnMessage("Mój tekst");
+
+            del -= WriteMessageInConsole;
+            del("Mój tekst 2");
         }
 
-
-        private string  ReturnMessage(string message)
+        private void WriteMessageInConsole(string message)
         {
-            return message;
+            Console.WriteLine(message);
+        }
+
+        private void WriteMessageInConsole2(string message)
+        {
+            Console.WriteLine(message.ToUpper());
         }
 
         public override void AddScore(float numberOfScore)

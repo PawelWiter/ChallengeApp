@@ -12,7 +12,8 @@ Console.WriteLine(" ");
 Console.WriteLine(" For summary => press Q");
 Console.WriteLine("--------------------------------");
 
-var employee = new EmployeeInFile("Piotr", "Nowak");
+var employee = new EmployeeInMemory("Piotr", "Nowak");
+employee.ToString();
 
 while (true)
 {
