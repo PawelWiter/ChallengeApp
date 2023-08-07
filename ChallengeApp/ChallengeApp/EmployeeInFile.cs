@@ -1,4 +1,6 @@
-﻿namespace ChallengeApp
+﻿using static System.Formats.Asn1.AsnWriter;
+
+namespace ChallengeApp
 {
     public class EmployeeInFile : EmployeeBase
     {
@@ -127,43 +129,60 @@
 
         public override Statistics GetStatistics()
         {
-            var lineCounter = 0;
-            var statistics = new Statistics();
-            {
-                statistics.Average = 0;
-                statistics.Max = float.MinValue;
-                statistics.Min = float.MaxValue;
-            };
+            var scoresFromFile = ReadScoresFromFile();
+            var result = this.CountStatistics(scoresFromFile);
+            return result;
+        }
 
-            if (File.Exists(filename))
+        private List<float> ReadScoresFromFile() 
+        {
+            var scores = new List<float>();
+            if (File.Exists($"{filename}"))
             {
                 using (var reader = File.OpenText(filename))
                 {
-                    var line = " ";
-
+                    var line = reader.ReadLine();
                     while (line != null)
                     {
+                        var number = float.Parse(line);
+                        scores.Add(number);
                         line = reader.ReadLine();
-                        if (line != null)
-                        {
-                            var number = float.Parse(line);
-                            statistics.Max = Math.Max(statistics.Max, number);
-                            statistics.Min = Math.Min(statistics.Min, number);
-                            statistics.Average += number;
-                            lineCounter++;
-                        }
                     }
                 }
             }
-                statistics.Average /= lineCounter;
-                statistics.AverageLetter = statistics.Average switch
+            return scores;
+        }
+
+        private Statistics CountStatistics(List<float> scores)
+        {
+            var statistics = new Statistics()
+            {
+                Average = 0,
+                Max = float.MinValue,
+                Min = float.MaxValue,
+                EmptyScoreList = true
+            };
+
+            foreach (var score in scores)
+            {
+                if (score >= 0)
                 {
-                    var average when average >= 80 => 'A',
-                    var average when average >= 60 => 'B',
-                    var average when average >= 40 => 'C',
-                    var average when average >= 20 => 'D',
-                    _ => 'E',
-                };
+                    statistics.Max = Math.Max(statistics.Max, score);
+                    statistics.Min = Math.Min(statistics.Min, score);
+                    statistics.Average += score;
+                    statistics.EmptyScoreList = false;
+                }
+            }
+            statistics.Average /= scores.Count;
+
+            statistics.AverageLetter = statistics.Average switch
+            {
+                var average when average >= 80 => 'A',
+                var average when average >= 60 => 'B',
+                var average when average >= 40 => 'C',
+                var average when average >= 20 => 'D',
+                _ => 'E',
+            };
             return statistics;
         }
     }
