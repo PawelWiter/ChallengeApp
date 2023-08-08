@@ -7,7 +7,7 @@
         private const string filename = "grades.txt";
 
         public EmployeeInFile(string name, string surname)
-        : base(name, surname)
+            : base(name, surname)
         {
         }
 
@@ -129,13 +129,6 @@
             }
         }
 
-        public override Statistics GetStatistics()
-        {
-            var scoresFromFile = ReadScoresFromFile();
-            var result = this.CountStatistics(scoresFromFile);
-            return result;
-        }
-
         private List<float> ReadScoresFromFile()
         {
             var scores = new List<float>();
@@ -155,37 +148,19 @@
             return scores;
         }
 
-        private Statistics CountStatistics(List<float> scores)
+        public override Statistics GetStatistics()
         {
-            var statisticsInFile = new Statistics()
-            {
-                Average = 0,
-                Max = float.MinValue,
-                Min = float.MaxValue,
-                EmptyScoreList = true
-            };
+            var statistics = new Statistics();
 
-            foreach (var score in scores)
+            foreach(var score in ReadScoresFromFile())
             {
-                if (score >= 0)
-                {
-                    statisticsInFile.Max = Math.Max(statisticsInFile.Max, score);
-                    statisticsInFile.Min = Math.Min(statisticsInFile.Min, score);
-                    statisticsInFile.Average += score;
-                    statisticsInFile.EmptyScoreList = false;
-                }
+                statistics.AddScore(score);
             }
-            statisticsInFile.Average /= scores.Count;
 
-            statisticsInFile.AverageLetter = statisticsInFile.Average switch
-            {
-                var average when average >= 80 => 'A',
-                var average when average >= 60 => 'B',
-                var average when average >= 40 => 'C',
-                var average when average >= 20 => 'D',
-                _ => 'E',
-            };
-            return statisticsInFile;
+            return statistics;
+            
         }
+
+
     }
 }

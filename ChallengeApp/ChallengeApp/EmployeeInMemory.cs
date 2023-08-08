@@ -4,10 +4,10 @@
     {
         public override event ScoreAddedDelegate ScoreAdded;
 
-        private List<float> score = new List<float>();
+        private List<float> scores = new List<float>();
 
         public EmployeeInMemory(string name, string surname)
-        : base(name, surname)
+            : base(name, surname)
         {
 
         }
@@ -16,7 +16,7 @@
         {
             if (numberOfScore >= 0 && numberOfScore <= 100)
             {
-                this.score.Add(numberOfScore);
+                this.scores.Add(numberOfScore);
 
                 if (ScoreAdded != null)
                 {
@@ -88,33 +88,13 @@
 
         public override Statistics GetStatistics()
         {
-            var statistics = new Statistics
-            {
-                Average = 0,
-                Max = float.MinValue,
-                Min = float.MaxValue,
-                EmptyScoreList = true
-            };
+            var statistics = new Statistics();
 
-            foreach (var score in this.score)
+            foreach (var score in this.scores)
             {
-                {
-                    statistics.Max = Math.Max(statistics.Max, score);
-                    statistics.Min = Math.Min(statistics.Min, score);
-                    statistics.Average += score;
-                    statistics.EmptyScoreList = false;
-                }
+                statistics.AddScore(score);
             }
-            statistics.Average /= this.score.Count;
 
-            statistics.AverageLetter = statistics.Average switch
-            {
-                var average when average >= 80 => 'A',
-                var average when average >= 60 => 'B',
-                var average when average >= 40 => 'C',
-                var average when average >= 20 => 'D',
-                _ => 'E',
-            };
             return statistics;
         }
     }

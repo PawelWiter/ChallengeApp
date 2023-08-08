@@ -1,11 +1,11 @@
-﻿namespace ChallengeApp
+﻿using static ChallengeApp.EmployeeBase;
+
+namespace ChallengeApp
 {
     public interface IEmployee
     {
         string Name { get; }
         string Surname { get; }
-
-        //event EmployeeBase.ScoreAddedDelegate ScoreAdded;
 
         void AddScore(float numberOfScore);
 
@@ -16,6 +16,8 @@
         void AddScore(char numberOfScore);
 
         void AddScore(string numberOfScore);
+
+        event ScoreAddedDelegate ScoreAdded;
 
         Statistics GetStatistics();
     }
