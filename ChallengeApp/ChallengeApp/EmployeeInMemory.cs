@@ -2,29 +2,14 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
-        public delegate void WriteMessage(string message); //delegat przygotowany
+        public override event ScoreAddedDelegate ScoreAdded;
 
-        private readonly List<float> score = new();
+        private List<float> score = new List<float>();
+
         public EmployeeInMemory(string name, string surname)
         : base(name, surname)
         {
-            WriteMessage del;
-            del = WriteMessageInConsole;
-            del += WriteMessageInConsole2;
-            del("Mój tekst");
 
-            del -= WriteMessageInConsole;
-            del("Mój tekst 2");
-        }
-
-        private void WriteMessageInConsole(string message)
-        {
-            Console.WriteLine(message);
-        }
-
-        private void WriteMessageInConsole2(string message)
-        {
-            Console.WriteLine(message.ToUpper());
         }
 
         public override void AddScore(float numberOfScore)
@@ -32,6 +17,11 @@
             if (numberOfScore >= 0 && numberOfScore <= 100)
             {
                 this.score.Add(numberOfScore);
+
+                if (ScoreAdded != null)
+                {
+                    ScoreAdded(this, new EventArgs());
+                }
             }
             else
             {
@@ -57,23 +47,23 @@
             {
                 case 'A':
                 case 'a':
-                    this.score.Add(100);
+                    this.AddScore(100f);
                     break;
                 case 'B':
                 case 'b':
-                    this.score.Add(80);
+                    this.AddScore(80f);
                     break;
                 case 'C':
                 case 'c':
-                    this.score.Add(60);
+                    this.AddScore(60f);
                     break;
                 case 'D':
                 case 'd':
-                    this.score.Add(40);
+                    this.AddScore(40f);
                     break;
                 case 'E':
                 case 'e':
-                    this.score.Add(20);
+                    this.AddScore(20f);
                     break;
                 default:
                     throw new Exception("#error: wrong letter");

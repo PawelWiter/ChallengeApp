@@ -1,6 +1,6 @@
 ﻿namespace ChallengeApp
 {
-    public class Supervisor : IEmployee
+    public class Supervisor //: IEmployee
     {
         private readonly List<float> score = new();
 
@@ -8,7 +8,6 @@
         {
             this.Name = name;
             this.Surname = surname;
-
         }
 
         public string Name { get; private set; }

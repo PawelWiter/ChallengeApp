@@ -5,6 +5,8 @@
         string Name { get; }
         string Surname { get; }
 
+        //event EmployeeBase.ScoreAddedDelegate ScoreAdded;
+
         void AddScore(float numberOfScore);
 
         void AddScore(double numberOfScore);

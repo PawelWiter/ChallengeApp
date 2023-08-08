@@ -1,9 +1,9 @@
-﻿using static System.Formats.Asn1.AsnWriter;
-
-namespace ChallengeApp
+﻿namespace ChallengeApp
 {
     public class EmployeeInFile : EmployeeBase
     {
+        public override event ScoreAddedDelegate ScoreAdded;
+
         private const string filename = "grades.txt";
 
         public EmployeeInFile(string name, string surname)
@@ -17,6 +17,10 @@ namespace ChallengeApp
             {
                 using var writer = File.AppendText(filename);
                 writer.WriteLine(numberOfScore);
+                if (ScoreAdded != null)
+                {
+                    ScoreAdded(this, new EventArgs());
+                }
             }
             else
             {
@@ -38,28 +42,27 @@ namespace ChallengeApp
 
         public override void AddScore(char result1)
         {
-            using var writer = File.AppendText(filename);
             switch (result1)
             {
                 case 'A':
                 case 'a':
-                    writer.WriteLine(100);
+                    this.AddScore(100f);
                     break;
                 case 'B':
                 case 'b':
-                    writer.WriteLine(80);
+                    this.AddScore(80f);
                     break;
                 case 'C':
                 case 'c':
-                    writer.WriteLine(60);
+                    this.AddScore(60f);
                     break;
                 case 'D':
                 case 'd':
-                    writer.WriteLine(40);
+                    this.AddScore(40f);
                     break;
                 case 'E':
                 case 'e':
-                    writer.WriteLine(20);
+                    this.AddScore(20f);
                     break;
                 default:
                     throw new Exception("#error: wrong letter");
@@ -76,38 +79,37 @@ namespace ChallengeApp
                 if (numberOfScore.Contains('+'))
                 {
                     numberOfScore = numberOfScore.Replace("+", "");
-                    correctionValue = 5;
+                    correctionValue = 5f;
                 }
                 else if (numberOfScore.Contains('-'))
                 {
                     numberOfScore = numberOfScore.Replace("-", "");
-                    correctionValue = -5;
+                    correctionValue = -5f;
                 }
                 else
                 {
-                    correctionValue = 0;
+                    correctionValue = 0f;
                 }
 
-                using var writer = File.AppendText(filename);
                 switch (numberOfScore)
                 {
                     case "6":
-                        writer.WriteLine(100 + correctionValue);
+                        this.AddScore(100f + correctionValue);
                         break;
                     case "5":
-                        writer.WriteLine(80 + correctionValue);
+                        this.AddScore(80f + correctionValue);
                         break;
                     case "4":
-                        writer.WriteLine(60 + correctionValue);
+                        this.AddScore(60f + correctionValue);
                         break;
                     case "3":
-                        writer.WriteLine(40 + correctionValue);
+                        this.AddScore(40f + correctionValue);
                         break;
                     case "2":
-                        writer.WriteLine(20 + correctionValue);
+                        this.AddScore(20f + correctionValue);
                         break;
                     case "1":
-                        writer.WriteLine(0 + correctionValue);
+                        this.AddScore(0f + correctionValue); ;
                         break;
                     default:
                         throw new Exception("#error: probably wrong grade entered");
@@ -134,7 +136,7 @@ namespace ChallengeApp
             return result;
         }
 
-        private List<float> ReadScoresFromFile() 
+        private List<float> ReadScoresFromFile()
         {
             var scores = new List<float>();
             if (File.Exists($"{filename}"))
@@ -155,7 +157,7 @@ namespace ChallengeApp
 
         private Statistics CountStatistics(List<float> scores)
         {
-            var statistics = new Statistics()
+            var statisticsInFile = new Statistics()
             {
                 Average = 0,
                 Max = float.MinValue,
@@ -167,15 +169,15 @@ namespace ChallengeApp
             {
                 if (score >= 0)
                 {
-                    statistics.Max = Math.Max(statistics.Max, score);
-                    statistics.Min = Math.Min(statistics.Min, score);
-                    statistics.Average += score;
-                    statistics.EmptyScoreList = false;
+                    statisticsInFile.Max = Math.Max(statisticsInFile.Max, score);
+                    statisticsInFile.Min = Math.Min(statisticsInFile.Min, score);
+                    statisticsInFile.Average += score;
+                    statisticsInFile.EmptyScoreList = false;
                 }
             }
-            statistics.Average /= scores.Count;
+            statisticsInFile.Average /= scores.Count;
 
-            statistics.AverageLetter = statistics.Average switch
+            statisticsInFile.AverageLetter = statisticsInFile.Average switch
             {
                 var average when average >= 80 => 'A',
                 var average when average >= 60 => 'B',
@@ -183,7 +185,7 @@ namespace ChallengeApp
                 var average when average >= 20 => 'D',
                 _ => 'E',
             };
-            return statistics;
+            return statisticsInFile;
         }
     }
 }
